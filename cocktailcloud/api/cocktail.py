@@ -29,6 +29,7 @@ class Cocktail:
                 for ingrediant in data["recepie"]:
                     ingrediant_name = ingrediants.list()["data"]["ingrediants"][str(ingrediant)]
                     long_recepie[ingrediant_name] = data["recepie"][ingrediant]
+                    long_recepie[ingrediant_name]["id"] = ingrediant
                 data["recepie"] = long_recepie 
         except:
             return {'error': True, 'error_msg': 'Error: Could not read file with given id', 'data':{}}
