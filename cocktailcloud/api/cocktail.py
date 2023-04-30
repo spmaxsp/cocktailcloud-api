@@ -21,6 +21,19 @@ class Cocktail:
             return {'error': True, 'error_msg': 'Error: Could not read file with given id', 'data':{}}
         return {'error': False, 'error_msg': '', 'data':{'cocktail':data}}
 
+    def info_long(self, id, ingrediants):
+        try:
+            with open(join(self.path, "cocktail", f'{id}.json')) as f:
+                data = json.load(f)
+                long_recepie = {}
+                for ingrediant in data["recepie"]:
+                    ingrediant_name = ingrediants.list()["data"]["ingrediants"][str(ingrediant)]
+                    long_recepie[ingrediant_name] = data["recepie"][ingrediant]
+                data["recepie"] = long_recepie 
+        except:
+            return {'error': True, 'error_msg': 'Error: Could not read file with given id', 'data':{}}
+        return {'error': False, 'error_msg': '', 'data':{'cocktail':data}}
+
     def remove(self, id):
         try:
             remove(join(self.path, "cocktail", f'{id}.json'))

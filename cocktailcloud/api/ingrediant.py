@@ -31,6 +31,11 @@ class Ingrediant:
             return {'error': True, 'error_msg': 'Error: Could edit file', 'data':{}}
         return {'error': False, 'error_msg': '', 'data':{'new_id':new_id}}
 
+    def in_use(self, id, cocktails):
+        if not cocktails.del_check(id):
+            return {'error': False, 'error_msg': '', 'data':{'in_use':True}}
+        return {'error': False, 'error_msg': '', 'data':{'in_use':False}}
+
     def delete(self, id, cocktails, settings):
         if not cocktails.del_check(id):
             return {'error': True, 'error_msg': 'Error: Ingrediant is still in use by cocktail', 'data':{}}
