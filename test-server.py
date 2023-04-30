@@ -70,10 +70,10 @@ def cocktail_request(action, id=None, value=None, ingrediant=None):
 
     #       COCKTAILS V2
     #
-@app.route("v2/cocktail/<action>")
-@app.route("v2/cocktail/<action>/<id>", methods=['GET'])
-@app.route("v2/cocktail/<action>/<id>/<value>", methods=['GET'])
-@app.route("v2/cocktail/<action>/<id>/<value>/<ingrediant>", methods=['GET'])
+@app.route("/v2/cocktail/<action>")
+@app.route("/v2/cocktail/<action>/<id>", methods=['GET'])
+@app.route("/v2/cocktail/<action>/<id>/<value>", methods=['GET'])
+@app.route("/v2/cocktail/<action>/<id>/<value>/<ingrediant>", methods=['GET'])
 def cocktail_request_v2(action, id=None, value=None, ingrediant=None):
     match action:
         case "list":
@@ -81,7 +81,7 @@ def cocktail_request_v2(action, id=None, value=None, ingrediant=None):
         case "remove":
             return jsonify(cocktails.remove(id))
         case "info":
-            if request.args.get("fromat") == "long"
+            if request.args.get("fromat") == "long":
                 return jsonify(cocktails.info_long(id, ingrediants))
             else:
                 return jsonify(cocktails.info(id))
