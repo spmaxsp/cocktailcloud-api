@@ -52,10 +52,10 @@ def image_download(database, id):
 
     #       COCKTAILS V1
     #    
-@app.route("/cocktail/<action>")
-@app.route("/cocktail/<action>/<id>", methods=['GET'])
-@app.route("/cocktail/<action>/<id>/<value>", methods=['GET'])
-@app.route("/cocktail/<action>/<id>/<value>/<ingrediant>", methods=['GET'])
+@app.route("/api/cocktail/<action>")
+@app.route("/api/cocktail/<action>/<id>", methods=['GET'])
+@app.route("/api/cocktail/<action>/<id>/<value>", methods=['GET'])
+@app.route("/api/cocktail/<action>/<id>/<value>/<ingrediant>", methods=['GET'])
 def cocktail_request(action, id=None, value=None, ingrediant=None):
     match action:
         case "list":
@@ -75,10 +75,10 @@ def cocktail_request(action, id=None, value=None, ingrediant=None):
 
     #       COCKTAILS V2
     #
-@app.route("/v2/cocktail/<action>")
-@app.route("/v2/cocktail/<action>/<id>", methods=['GET'])
-@app.route("/v2/cocktail/<action>/<id>/<value>", methods=['GET'])
-@app.route("/v2/cocktail/<action>/<id>/<value>/<ingrediant>", methods=['GET'])
+@app.route("/api/v2/cocktail/<action>")
+@app.route("/api/v2/cocktail/<action>/<id>", methods=['GET'])
+@app.route("/api/v2/cocktail/<action>/<id>/<value>", methods=['GET'])
+@app.route("/api/v2/cocktail/<action>/<id>/<value>/<ingrediant>", methods=['GET'])
 def cocktail_request_v2(action, id=None, value=None, ingrediant=None):
     match action:
         case "list":
@@ -101,9 +101,9 @@ def cocktail_request_v2(action, id=None, value=None, ingrediant=None):
 
     #       USER V1
     #       
-@app.route("/user/<action>")
-@app.route("/user/<action>/<id>", methods=['GET'])
-@app.route("/user/<action>/<id>/<value>", methods=['GET'])
+@app.route("/api/user/<action>")
+@app.route("/api/user/<action>/<id>", methods=['GET'])
+@app.route("/api/user/<action>/<id>/<value>", methods=['GET'])
 def user_request(action, id=None, value=None, ingrediant=None):
     match action:
         case "list":
@@ -120,9 +120,9 @@ def user_request(action, id=None, value=None, ingrediant=None):
 
     #       USER V2
     #
-@app.route("/v2/user/<action>")
-@app.route("/v2/user/<action>/<id>", methods=['GET'])
-@app.route("/v2/user/<action>/<id>/<value>", methods=['GET'])
+@app.route("/api/v2/user/<action>")
+@app.route("/api/v2/user/<action>/<id>", methods=['GET'])
+@app.route("/api/v2/user/<action>/<id>/<value>", methods=['GET'])
 def user_request_v2(action, id=None, value=None, ingrediant=None):
     match action:
         case "list":
@@ -139,8 +139,8 @@ def user_request_v2(action, id=None, value=None, ingrediant=None):
 
     #       INGREDIANTS V1
     #
-@app.route("/ingrediant/<action>", methods=['GET'])
-@app.route("/ingrediant/<action>/<id>")
+@app.route("/api/ingrediant/<action>", methods=['GET'])
+@app.route("/api/ingrediant/<action>/<id>")
 def ingrediant_request(action, id=None):
     match action:
         case "list":
@@ -153,8 +153,8 @@ def ingrediant_request(action, id=None):
 
     #       INGREDIANTS V2
     #
-@app.route("/v2/ingrediant/<action>", methods=['GET'])
-@app.route("/v2/ingrediant/<action>/<id>")
+@app.route("/api/v2/ingrediant/<action>", methods=['GET'])
+@app.route("/api/v2/ingrediant/<action>/<id>")
 def ingrediant_request_v2(action, id=None):
     match action:
         case "list":
@@ -169,8 +169,8 @@ def ingrediant_request_v2(action, id=None):
 
     #       SETTINGS V1
     #
-@app.route("/settings/<action>", methods=['GET'])
-@app.route("/settings/<action>/<value>", methods=['GET'])
+@app.route("/api/settings/<action>", methods=['GET'])
+@app.route("/api/settings/<action>/<value>", methods=['GET'])
 def setting_request(action, value=None):
     match action:
         case "info":
@@ -181,8 +181,8 @@ def setting_request(action, value=None):
 
     #       SETTINGS V2
     #
-@app.route("/v2/settings/<action>/", methods=['GET'])
-@app.route("/v2/settings/<action>/<entry>/<value>", methods=['GET'])
+@app.route("/api/v2/settings/<action>/", methods=['GET'])
+@app.route("/api/v2/settings/<action>/<entry>/<value>", methods=['GET'])
 def setting_request_v2(action, entry=None, value=None):
     match action:
         case "info":
