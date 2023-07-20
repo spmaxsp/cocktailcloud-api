@@ -11,7 +11,7 @@ class User:
             files = [".".join(f.split(".")[:-1]) for f in listdir(join(self.path, "user")) if isfile(join(self.path, "user", f))]
         except:
             return {'error': True, 'error_msg': 'Error: Could not read database', 'data':{}}
-        return {'error': False, 'error_msg': '', 'data':{'users':files}}
+        return {'error': False, 'error_msg': '', 'data':{'users':files, 'new_id':-1}}
 
     def info(self, id):
         try:
@@ -27,7 +27,7 @@ class User:
             files = [".".join(f.split(".")[:-1]) for f in listdir(join(self.path, "user")) if isfile(join(self.path, "user", f))]
         except:
             return {'error': True, 'error_msg': 'Error: Could not remove file with given id', 'data':{}}
-        return {'error': False, 'error_msg': '', 'data':{'users':files}}
+        return {'error': False, 'error_msg': '', 'data':{'users':files, 'new_id':-1}}
 
     def new(self):
         try:
@@ -39,7 +39,9 @@ class User:
                 json.dump(data, f)
         except:
             return {'error': True, 'error_msg': 'Error: Error while creating new file', 'data':{}}
-        return {'error': False, 'error_msg': '', 'data':{'new_id':new_id}}
+        return_data = self.list()
+        return_data['data']['new_id'] = new_id
+        return return_data
 
     def edit_main(self, id, parameter, value):
         if value == None:

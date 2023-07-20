@@ -31,6 +31,7 @@ class Cocktail:
                     long_recepie[ingrediant_name] = data["recepie"][ingrediant]
                     long_recepie[ingrediant_name]["id"] = ingrediant
                 data["recepie"] = long_recepie 
+                data["available"] = ingrediants.list()["data"]["ingrediants"]
         except:
             return {'error': True, 'error_msg': 'Error: Could not read file with given id', 'data':{}}
         return {'error': False, 'error_msg': '', 'data':{'cocktail':data}}
@@ -53,9 +54,9 @@ class Cocktail:
                 json.dump(data, f)
         except:
             return {'error': True, 'error_msg': 'Error: Error while creating new file', 'data':{}}
-        return {'error': False, 'error_msg': '', 'data':{'new_id':new_id}}
+        return self.list()
 
-    def edit_main(self, id, parameter, value):
+    def edit_main(self, id, parameter, value, ingrediants, format):
         if value == None:
             return {'error': True, 'error_msg': 'Error: No value given', 'data':{}}
         try:
@@ -72,28 +73,50 @@ class Cocktail:
                 f.truncate()
         except:
             return {'error': True, 'error_msg': 'Error: Could edit file with given id', 'data':{}}
-        return {'error': False, 'error_msg': '', 'data':{'cocktail':data}}
+        if format == "long":
+            return self.info_long(id, ingrediants)
+        else:
+            return self.info(id)
 
-    def edit_ingrediant(self, id, ingrediant, value, priority, ingrediants):
+    def edit_ingrediant(self, id, ingrediant, value, priority, ingrediants, long):
         if value == None or priority == None:
             return {'error': True, 'error_msg': 'Error: No values given', 'data':{}}
-        if ingrediant not in ingrediants.list():
+        if ingrediant not in ingrediants.get_list():
             return {'error': True, 'error_msg': 'Error: Ingrediant does not exist', 'data':{}}
         #try:
         with open(join(self.path, "cocktail", f'{id}.json'), 'r+') as f:
             data = json.load(f)
-            data["recepie"][ingrediant] = {"amount":int(value),"priority":int(priority)}
+            data["recepie"][str(ingrediant)] = {"amount":int(value),"priority":int(priority)}
             if value == "0":
-                del data["recepie"][ingrediant]
+                del data["recepie"][str(ingrediant)]
             f.seek(0)
             json.dump(data, f, indent=4)
             f.truncate()
         #except:
         #    return 'Error: Could edit file with given id'
-        return {'error': False, 'error_msg': '', 'data':{'cocktail':data}}
+        if long:
+            return self.info_long(id, ingrediants)
+        else:
+            return self.info(id)
+
+    
+    def get_cocktails(self):
+        try:
+            files = [".".join(f.split(".")[:-1]) for f in listdir(join(self.path, "cocktail")) if isfile(join(self.path, "cocktail", f))]
+        except:
+            return {}
+        return files
+    
+    def get_recepie(self, id):
+        try:
+            with open(join(self.path, "cocktail", f'{id}.json')) as f:
+                data = json.load(f)
+        except:
+            return {}
+        return data["recepie"]
 
     def del_check(self, id):
-        for c_entry in self.list():
-            if id in self.info(c_entry)["recepie"]:
+        for c_entry in self.get_cocktails():
+            if id in self.get_recepie(c_entry):
                 return False
         return True
