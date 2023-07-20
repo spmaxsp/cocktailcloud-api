@@ -1,14 +1,14 @@
 {
-    "name": "Test 1",
+    "name": "Testtttt",
     "likes": 0,
     "recepie": {
         "1": {
             "amount": 100,
             "priority": 10
         },
-        "2": {
-            "amount": 400,
-            "priority": 0
+        "0": {
+            "amount": 500,
+            "priority": 10
         }
     }
 }

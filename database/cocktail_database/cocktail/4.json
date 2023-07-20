@@ -1,0 +1,14 @@
+{
+    "name": "Test_Cocktail",
+    "likes": 0,
+    "recepie": {
+        "4": {
+            "amount": 10,
+            "priority": 0
+        },
+        "0": {
+            "amount": 300,
+            "priority": 0
+        }
+    }
+}

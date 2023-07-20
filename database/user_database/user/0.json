@@ -1,8 +1,8 @@
 {
-    "name": "Test 1",
+    "name": "Test Name",
     "drinks": 0,
-    "age": 20,
-    "gender": "male",
-    "weight": "",
+    "age": 22,
+    "gender": "female",
+    "weight": 78,
     "attrib": ""
 }

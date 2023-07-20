@@ -1,21 +1,23 @@
 {
-    "password": "2345",
+    "password": "12345",
     "lightcolor1": "",
     "lightcolor2": "",
     "animation": "",
     "pump": [
-        "0",
         "1",
+        "3",
+        "4",
         "null",
         "null",
         "null",
         "null",
         "null",
         "null",
-        "2",
-        "3"
+        "null"
     ],
     "manual": [
-        "4"
+        "5",
+        "2",
+        "0"
     ]
 }

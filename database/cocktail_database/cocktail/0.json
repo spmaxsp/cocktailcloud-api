@@ -1,5 +1,18 @@
 {
-    "name": "Testtt",
+    "name": "New Name",
     "likes": 0,
-    "recepie": {}
+    "recepie": {
+        "1": {
+            "amount": 20,
+            "priority": 100
+        },
+        "0": {
+            "amount": 100,
+            "priority": 100
+        },
+        "2": {
+            "amount": 100,
+            "priority": 100
+        }
+    }
 }
