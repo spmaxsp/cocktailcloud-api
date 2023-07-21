@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.86313ca5.css",
+    "main.js": "/static/js/main.537968de.js",
+    "static/media/Cocktailcloud_Logo_SVG.svg": "/static/media/Cocktailcloud_Logo_SVG.db03d69d7a377e743b891ec14a9974bc.svg",
+    "index.html": "/index.html",
+    "main.86313ca5.css.map": "/static/css/main.86313ca5.css.map",
+    "main.537968de.js.map": "/static/js/main.537968de.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.86313ca5.css",
+    "static/js/main.537968de.js"
+  ]
+}
