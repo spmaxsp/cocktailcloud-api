@@ -13,13 +13,21 @@ from cocktailcloud.api.user import User
 from cocktailcloud.api.ingrediant import Ingrediant
 from cocktailcloud.api.config import Config
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='./react-app/js-build/', static_url_path='/')
 CORS(app)
 
 cocktails = Cocktail("./database/cocktail_database/")
 users = User("./database/user_database/")
 ingrediants = Ingrediant("./database/ingrediant_database/")
 settings = Config("./database/configuration.json")
+
+
+    #       REACT
+    #
+@app.route('/')
+def index():
+    return app.send_static_file('index.html')
+
 
     #       IMAGE UPLOAD
     #
