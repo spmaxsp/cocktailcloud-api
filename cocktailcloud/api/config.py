@@ -128,6 +128,14 @@ class Config:
                     data["lightcolor2"] = val
                 elif value == "animation":
                     data["animation"] = val
+                elif value == "machine_ip":
+                    data["machine_ip"] = val
+                elif value == "machine_port":
+                    data["machine_port"] = val
+                elif value == "api_ip":
+                    data["api_ip"] = val
+                elif value == "api_port":
+                    data["api_port"] = val
                 else:
                     return {'error': True, 'error_msg': 'Error: No valid value', 'data':{}}
             elif entry == "pump":

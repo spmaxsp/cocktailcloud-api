@@ -1,5 +1,9 @@
 {
     "password": "12345",
+    "machine_ip": "192.0.0.2",
+    "machine_port": "3001",
+    "api_ip": "192.0.0.1",
+    "api_port": "43560",
     "lightcolor1": "",
     "lightcolor2": "",
     "animation": "",
