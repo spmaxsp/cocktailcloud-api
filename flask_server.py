@@ -19,6 +19,7 @@ from cocktailcloud.api.cocktail import Cocktail
 from cocktailcloud.api.user import User
 from cocktailcloud.api.ingrediant import Ingrediant
 from cocktailcloud.api.config import Config
+from cocktailcloud.api.prep_info import PreparationInfo
 
 class FlaskServerLogger(logging.Handler):
     ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
@@ -53,6 +54,7 @@ def start_flask_server(app):
     users = User("./database/user_database/")
     ingrediants = Ingrediant("./database/ingrediant_database/")
     settings = Config("./database/configuration.json")
+    prep_info = PreparationInfo()
 
         #       REACT
         #
@@ -235,5 +237,27 @@ def start_flask_server(app):
                     return jsonify(settings.edit_v2(entry, value, request.args.get("val"), ingrediants, True))
                 else:
                     return jsonify(settings.edit_v2(entry, value, request.args.get("val"), ingrediants, False))
+                
+        #       PREPARATION INFO V1
+        #
+    @server.route("/api/v1/preparation/<action>/<id>", methods=['GET'])
+    @server.route("/api/v1/preparation/<action>/<id>/<value>", methods=['GET'])
+    def preparation_request(action, id=None, value=None):
+        match action:
+            case "prepare_prepinfo":
+                return jsonify(prep_info.prepare_prepinfo(id, cocktails, settings, ingrediants))
+            case "num_steps":
+                if request.args.get("format") == "long":
+                    return jsonify(prep_info.number_of_steps_json(id))
+                else:
+                    return prep_info.number_of_steps_simple(id)
+            case "manual_info":
+                return jsonify(prep_info.manual_steps(id))
+            case "step_info":
+                if request.args.get("format") == "long":
+                    return jsonify(prep_info.step_info_json(id, value))
+                else:
+                    return prep_info.step_info_simple(id, value)
+
                 
     server.run(host='localhost', port='43560')

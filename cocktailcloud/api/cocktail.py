@@ -114,6 +114,17 @@ class Cocktail:
         except:
             return {}
         return data["recepie"]
+    
+    def get_recepie_as_list(self, id):
+        try:
+            with open(join(self.path, "cocktail", f'{id}.json')) as f:
+                data = json.load(f)
+        except:
+            return []
+        recepie_list = []
+        for ingrediant in data["recepie"]:
+            recepie_list.append({"id":ingrediant,"amount":data["recepie"][ingrediant]["amount"],"priority":data["recepie"][ingrediant]["priority"]})
+        return recepie_list
 
     def del_check(self, id):
         for c_entry in self.get_cocktails():

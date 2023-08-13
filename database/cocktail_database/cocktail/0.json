@@ -7,12 +7,24 @@
             "priority": 100
         },
         "0": {
-            "amount": 100,
+            "amount": 20,
             "priority": 100
         },
         "2": {
             "amount": 100,
-            "priority": 100
+            "priority": -100
+        },
+        "3": {
+            "amount": 100,
+            "priority": 10
+        },
+        "4": {
+            "amount": 50,
+            "priority": 10
+        },
+        "5": {
+            "amount": 20,
+            "priority": 10
         }
     }
 }
