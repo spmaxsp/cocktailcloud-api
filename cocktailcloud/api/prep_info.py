@@ -93,19 +93,19 @@ class PreparationInfo:
 
             return {'error': False, 'error_msg': '', 'data':'OK'}
         else:
-            return {'error': True, 'error_msg': 'Not enough ingredients', 'data': 'Not enough ingredients'}
+            return {'error': True, 'error_msg': 'Not enough ingredients', 'data': ''}
 
     def number_of_steps_json(self, id):
         if self.prepared_id == id:
             return {'error': False, 'error_msg': '', 'data': len(self.automatic_list)}
         else:
-            return {'error': True, 'error_msg': 'Not prepared', 'data': 'Not prepared'}
+            return {'error': True, 'error_msg': 'Not prepared', 'data': ''}
         
     def number_of_steps_simple(self, id):
         if self.prepared_id == id:
             return str(len(self.automatic_list))
         else:
-            return str(-1)
+            return 'ERR'
         
     def manual_steps(self, id):   
         if self.prepared_id == id:
