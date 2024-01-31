@@ -21,6 +21,8 @@ from cocktailcloud.api.ingrediant import Ingrediant
 from cocktailcloud.api.config import Config
 from cocktailcloud.api.prep_info import PreparationInfo
 
+import socket
+
 class FlaskServerLogger(logging.Handler):
     ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
 
@@ -240,8 +242,8 @@ def start_flask_server(app):
                 
         #       PREPARATION INFO V1
         #
-    @server.route("/api/v1/preparation/<action>/<id>", methods=['GET'])
-    @server.route("/api/v1/preparation/<action>/<id>/<value>", methods=['GET'])
+    @server.route("/api/v2/preparation/<action>/<id>", methods=['GET'])
+    @server.route("/api/v2/preparation/<action>/<id>/<value>", methods=['GET'])
     def preparation_request(action, id=None, value=None):
         match action:
             case "prepare_prepinfo":
@@ -259,5 +261,9 @@ def start_flask_server(app):
                 else:
                     return prep_info.step_info_simple(id, value)
 
+    hostname = socket.gethostname()
+    ip_address = socket.gethostbyname(hostname)
+
+    ip_address = "localhost"
                 
-    server.run(host='localhost', port='43560')
+    server.run(host=ip_address, port='43560')
